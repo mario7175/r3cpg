@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<robot
+  xmlns:xacro="http://www.ros.org/wiki/xacro"
+  name="r3cpg">
+  <!-- Parameters -->
+  <xacro:include filename="$(find r3cpg_description)/urdf/common.xacro" />
+  <!-- URDF Materials -->
+  <xacro:include filename="$(find r3cpg_description)/urdf/materials.urdf.xacro" />
+  <!-- Gazebo macros -->
+  <xacro:include filename="$(find r3cpg_description)/urdf/gazebo.urdf.xacro" />
+
+  <!-- ******** R3CPG Parts ******** -->
+  
+  <!-- Body -->
+  <xacro:include filename="$(find r3cpg_description)/urdf/body.urdf.xacro" />
+  <xacro:body/>
+  <!-- Legs -->
+  <!-- TODO -->
+
+</robot>

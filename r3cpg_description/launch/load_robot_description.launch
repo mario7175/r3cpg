@@ -1,0 +1,7 @@
+<launch>
+  <!-- Nombre del parametro para cargar modelo URDF, por defecto robot_description -->
+  <arg name="description_name" default="robot_description" />
+  <!-- Cargar y generar modelo usando xacro -->
+  <param name="$(arg description_name)" command="$(find xacro)/xacro.py '$(find r3cpg_description)/robots/r3cpg.urdf.xacro'" />
+  
+</launch>
