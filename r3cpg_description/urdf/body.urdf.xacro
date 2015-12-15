@@ -1,9 +1,10 @@
 <?xml version="1.0"?>
 <robot
   xmlns:xacro="http://www.ros.org/wiki/xacro"
-  name="r3cpg_body">
+  name="r3cpg_body"  >
   
-  <xacro:macro name="body">
+  <xacro:macro name="body" > 
+  
     <link
       name="base_link">
       <inertial>
@@ -40,23 +41,29 @@
         </geometry>
       </collision>
     </link>
+
+
+
+
+<xacro:macro name="leg" params="prefix1 prefix2 prefix3 prefix4 prefix5 prefix6 prefix7 reflect x y z">
+
     <link
-      name="leg_base_fr" />
+      name="${prefix1}_base" />  
     <joint
-      name="leg_base_fr_fixed"
+      name="${prefix1}_base_fixed"     
       type="fixed">
       <origin
-        xyz="0.121 -0.079 -0.0361"
+        xyz="${0.121*x} ${0.079*y} ${0.0361*z}"
         rpy="0 0 0" />
       <parent
         link="base_link" />
       <child
-        link="leg_base_fr" />
+        link="${prefix1}_base" />   
       <axis
         xyz="0 0 0" />
     </joint>
     <link
-      name="leg_shoulder">
+      name="${prefix2}_1">      
       <inertial>
         <origin
           xyz="1.7689E-08 0.024508 -0.063634"
@@ -92,15 +99,16 @@
       </collision>
     </link>
     <joint
-      name="leg_shoulder_joint"
+      name="${prefix5}_1"        
       type="revolute">
       <origin
+      
         xyz="0 -0.00252 0"
-        rpy="0 0 0" />
+        rpy="0 0 ${3.14*(reflect-1.0)/2.0}" />
       <parent
-        link="leg_base_fr" />
+        link="${prefix1}_base" />       
       <child
-        link="leg_shoulder" />
+        link="${prefix2}_1" />  
       <axis
         xyz="0 -1 0" />
       <limit
@@ -110,7 +118,7 @@
         velocity="0" />
     </joint>
     <link
-      name="leg_elbow">
+      name="${prefix3}_2">           
       <inertial>
         <origin
           xyz="-1.7313E-08 0.026803 -0.063159"
@@ -146,15 +154,15 @@
       </collision>
     </link>
     <joint
-      name="leg_elbow_joint"
+      name="${prefix6}_2"       
       type="revolute">
       <origin
         xyz="0 0.00142 -0.09284"
         rpy="0 0 0" />
       <parent
-        link="leg_shoulder" />
+        link="${prefix2}_1" />     
       <child
-        link="leg_elbow" />
+        link="${prefix3}_2" />      
       <axis
         xyz="0 -1 0" />
       <limit
@@ -164,7 +172,7 @@
         velocity="0" />
     </joint>
     <link
-      name="leg_wrist">
+      name="${prefix4}_3">          
       <inertial>
         <origin
           xyz="-4.1233E-10 0.027507 -0.036847"
@@ -200,15 +208,15 @@
       </collision>
     </link>
     <joint
-      name="leg_wrist_joint"
+      name="${prefix7}_3"         
       type="revolute">
       <origin
         xyz="0 -0.00092 -0.09284"
         rpy="0 0 0" />
       <parent
-        link="leg_elbow" />
+        link="${prefix3}_2" />        
       <child
-        link="leg_wrist" />
+        link="${prefix4}_3" />     
       <axis
         xyz="0 -1 0" />
       <limit
@@ -217,51 +225,36 @@
         effort="0"
         velocity="0" />
     </joint>
-    <link
-      name="leg_base_fl" />
-    <joint
-      name="leg_base_fl_fixed"
-      type="fixed">
-      <origin
-        xyz="0.121 0.079 -0.0361"
-        rpy="0 0 0" />
-      <parent
-        link="base_link" />
-      <child
-        link="leg_base_fl" />
-      <axis
-        xyz="0 0 0" />
-    </joint>
-    <link
-      name="leg_base_rr" />
-    <joint
-      name="leg_base_rr_fixed"
-      type="fixed">
-      <origin
-        xyz="-0.121 -0.079 -0.0361"
-        rpy="0 0 0" />
-      <parent
-        link="base_link" />
-      <child
-        link="leg_base_rr" />
-      <axis
-        xyz="0 0 0" />
-    </joint>
-    <link
-      name="leg_base_rl" />
-    <joint
-      name="leg_base_rl_fixed"
-      type="fixed">
-      <origin
-        xyz="-0.121 0.079 -0.0361"
-        rpy="0 0 0" />
-      <parent
-        link="base_link" />
-      <child
-        link="leg_base_rl" />
-      <axis
-        xyz="0 0 0" />
-    </joint>
-  </xacro:macro>
+
+</xacro:macro>
+
+<xacro:leg prefix1="leg_fr" prefix2="leg_shoulder_fr" prefix3="leg_elbow_fr" prefix4="leg_wrist_fr" prefix5="leg_shoulder_joint_fr" prefix6="leg_elbow_joint_fr" prefix7="leg_wrist_joint_fr" reflect="1.0" x="1.0" y="-1.0" z="-1.0"/>
+
+<xacro:leg prefix1="leg_fl" prefix2="leg_shoulder_fl" prefix3="leg_elbow_fl" prefix4="leg_wrist_fl" prefix5="leg_shoulder_joint_fl" prefix6="leg_elbow_joint_fl" prefix7="leg_wrist_joint_fl" reflect="-1.0" x="1.0" y="1.0" z="-1.0"/>
+
+<xacro:leg prefix1="leg_rr" prefix2="leg_shoulder_rr" prefix3="leg_elbow_rr" prefix4="leg_wrist_rr" prefix5="leg_shoulder_joint_rr" prefix6="leg_elbow_joint_rr" prefix7="leg_wrist_joint_rr" reflect="1.0" x="-1.0" y="-1.0" z="-1.0"/>
+
+<xacro:leg prefix1="leg_rl" prefix2="leg_shoulder_rl" prefix3="leg_elbow_rl" prefix4="leg_wrist_rl" prefix5="leg_shoulder_joint_rl" prefix6="leg_elbow_joint_rl" prefix7="leg_wrist_joint_rl" reflect="-1.0" x="-1.0" y="1.0" z="-1.0"/>
+
+</xacro:macro>
 
 </robot>
+
+
+
+
+   
+
+    
+
+
+
+
+   
+
+ 
+
+   
+
+
+
