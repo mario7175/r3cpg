@@ -15,6 +15,11 @@
   <xacro:include filename="$(find r3cpg_description)/urdf/body.urdf.xacro" />
   <xacro:body/>
   <!-- Legs -->
+  <xacro:include filename="$(find r3cpg_description)/urdf/leg.urdf.xacro" />
+  <xacro:leg  parent="leg_base_rr" side="rr" reflect="1" />
+  <xacro:leg  parent="leg_base_fr" side="fr" reflect="1" />
+  <xacro:leg  parent="leg_base_rl" side="rl" reflect="-1" />
+  <xacro:leg  parent="leg_base_fl" side="fl" reflect="-1" />
   <!-- TODO -->
 
 </robot>

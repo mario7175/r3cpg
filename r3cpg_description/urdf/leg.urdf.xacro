@@ -3,9 +3,9 @@
   xmlns:xacro="http://www.ros.org/wiki/xacro"
   name="r3cpg_body"  >
   
-  <xacro:macro name="leg" params="parent side reflect x y z">
+  <xacro:macro name="leg" params="parent side reflect">
     <link
-      name="leg_shoulder">
+      name="leg_${side}_shoulder">
       <inertial>
         <origin
           xyz="1.7689E-08 0.024508 -0.063634"
@@ -41,17 +41,17 @@
       </collision>
     </link>
     <joint
-      name="leg_shoulder_joint"
+      name="leg_${side}_shoulder"
       type="revolute">
       <origin
-        xyz="0 -0.00252 0"
-        rpy="0 0 0" />
+        xyz="0 ${-reflect*0.00252} 0"
+        rpy="0 0 ${(reflect-1.0)/2.0*3.1415}" /><!--  -->
       <parent
         link="${parent}" />
       <child
-        link="leg_shoulder" />
+        link="leg_${side}_shoulder" />
       <axis
-        xyz="0 -1 0" />
+        xyz="0 ${-reflect} 0" />
       <limit
         lower="-1.0"
         upper="1.0"
@@ -59,7 +59,7 @@
         velocity="0" />
     </joint>
     <link
-      name="leg_elbow">
+      name="leg_${side}_elbow">
       <inertial>
         <origin
           xyz="-1.7313E-08 0.026803 -0.063159"
@@ -95,17 +95,17 @@
       </collision>
     </link>
     <joint
-      name="leg_elbow_joint"
+      name="leg_${side}_elbow_joint"
       type="revolute">
       <origin
         xyz="0 0.00142 -0.09284"
         rpy="0 0 0" />
       <parent
-        link="leg_shoulder" />
+        link="leg_${side}_shoulder" />
       <child
-        link="leg_elbow" />
+        link="leg_${side}_elbow" />
       <axis
-        xyz="0 -1 0" />
+        xyz="0 ${-reflect} 0" />
       <limit
         lower="-1.0"
         upper="1.0"
@@ -113,7 +113,7 @@
         velocity="0" />
     </joint>
     <link
-      name="leg_wrist">
+      name="leg_${side}_wrist">
       <inertial>
         <origin
           xyz="-4.1233E-10 0.027507 -0.036847"
@@ -149,17 +149,17 @@
       </collision>
     </link>
     <joint
-      name="leg_wrist_joint"
+      name="leg_${side}_wrist_joint"
       type="revolute">
       <origin
         xyz="0 -0.00092 -0.09284"
         rpy="0 0 0" />
       <parent
-        link="leg_elbow" />
+        link="leg_${side}_elbow" />
       <child
-        link="leg_wrist" />
+        link="leg_${side}_wrist" />
       <axis
-        xyz="0 -1 0" />
+        xyz="0 ${-reflect} 0" />
       <limit
         lower="-1.0"
         upper="1.0"

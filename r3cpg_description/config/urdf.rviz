@@ -6,6 +6,8 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
+        - /RobotModel1
+        - /TF1
       Splitter Ratio: 0.636943
     Tree Height: 565
   - Class: rviz/Selection
@@ -48,7 +50,7 @@ Visualization Manager:
       Plane Cell Count: 10
       Reference Frame: <Fixed Frame>
       Value: true
-    - Alpha: 1
+    - Alpha: 0.8
       Class: rviz/RobotModel
       Collision Enabled: false
       Enabled: true
@@ -79,17 +81,62 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        leg_elbow:
+        leg_fl_elbow:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        leg_shoulder:
+        leg_fl_shoulder:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        leg_wrist:
+        leg_fl_wrist:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        leg_fr_elbow:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        leg_fr_shoulder:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        leg_fr_wrist:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        leg_rl_elbow:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        leg_rl_shoulder:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        leg_rl_wrist:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        leg_rr_elbow:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        leg_rr_shoulder:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        leg_rr_wrist:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -100,6 +147,74 @@ Visualization Manager:
       Update Interval: 0
       Value: true
       Visual Enabled: true
+    - Class: rviz/TF
+      Enabled: true
+      Frame Timeout: 15
+      Frames:
+        All Enabled: true
+        base_link:
+          Value: true
+        leg_base_fl:
+          Value: true
+        leg_base_fr:
+          Value: true
+        leg_base_rl:
+          Value: true
+        leg_base_rr:
+          Value: true
+        leg_fl_elbow:
+          Value: true
+        leg_fl_shoulder:
+          Value: true
+        leg_fl_wrist:
+          Value: true
+        leg_fr_elbow:
+          Value: true
+        leg_fr_shoulder:
+          Value: true
+        leg_fr_wrist:
+          Value: true
+        leg_rl_elbow:
+          Value: true
+        leg_rl_shoulder:
+          Value: true
+        leg_rl_wrist:
+          Value: true
+        leg_rr_elbow:
+          Value: true
+        leg_rr_shoulder:
+          Value: true
+        leg_rr_wrist:
+          Value: true
+      Marker Scale: 0.3
+      Name: TF
+      Show Arrows: true
+      Show Axes: true
+      Show Names: false
+      Tree:
+        base_link:
+          leg_base_fl:
+            leg_fl_shoulder:
+              leg_fl_elbow:
+                leg_fl_wrist:
+                  {}
+          leg_base_fr:
+            leg_fr_shoulder:
+              leg_fr_elbow:
+                leg_fr_wrist:
+                  {}
+          leg_base_rl:
+            leg_rl_shoulder:
+              leg_rl_elbow:
+                leg_rl_wrist:
+                  {}
+          leg_base_rr:
+            leg_rr_shoulder:
+              leg_rr_elbow:
+                leg_rr_wrist:
+                  {}
+      Update Interval: 0
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -136,10 +251,10 @@ Visualization Manager:
         Z: 0
       Name: Current View
       Near Clip Distance: 0.01
-      Pitch: 0.395203
+      Pitch: 0.380203
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 0.560397
+      Yaw: 0.295394
     Saved: ~
 Window Geometry:
   Displays:
@@ -157,5 +272,5 @@ Window Geometry:
   Views:
     collapsed: false
   Width: 1200
-  X: 227
-  Y: 46
+  X: 217
+  Y: 36
